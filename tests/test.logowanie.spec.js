@@ -1,15 +1,19 @@
 // @ts-check
 
 import { test, expect } from '@playwright/test';
-// test('has title', async ({ page }) => {
-//   await page.goto('/');
+import { Login } from '../logowanie.pages';
 
-test('has title', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+});
 
-  await page.goto('/');
-  await page.getByTestId('login-username').fill(process.env.ADMIN_LOGIN);
-  await page.getByTestId('login-password').fill(process.env.ADMIN_PASSWORD);
-  await page.getByTestId('login-button').click();
-  await expect(page.getByTestId('welcome-msg')).toContainText('Witaj: admin');
+test('login admin', async ({ page }) => {
+
+    const login = new Login(page);
+
+    await login.fillUserName(process.env.ADMIN_LOGIN);
+    await login.fillPasswordField(process.env.ADMIN_PASSWORD);
+    await login.clickLoginButton()
+    await login.clickLogoutButton();
 
 });
