@@ -6,7 +6,7 @@ export class Login {
         this.PasswordField = page.getByTestId('login-password');
         this.loginButton = this.page.getByTestId('login-button');
         this.logoutButton = this.page.getByRole('button', { name: 'Wyloguj' });
-        
+
 
     }
     async fillUserName(userName) {
@@ -18,11 +18,11 @@ export class Login {
     }
 
     async clickLoginButton() {
-        await this.loginButton.click;
+        await this.loginButton.click();
     }
 
     async clickLogoutButton() {
-        await this.logoutButton.click;
+        await this.logoutButton.click();
     }
 
 }
